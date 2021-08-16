@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Categories() {
-	return (
-		<div className='categories'>
-			<ul>
-				<li className='active'>Все</li>
-				<li>Мясные</li>
-				<li>Вегетарианская</li>
-				<li>Гриль</li>
-				<li>Острые</li>
-				<li>Закрытые</li>
-			</ul>
-		</div>
-	);
+export default function Categories(props) {
+  const [activeItem, setActiveItem] = useState(null);
+
+  function onSelectItem(i) {
+    setActiveItem(i);
+  }
+
+  const categories =
+    props.items &&
+    props.items.map((item, i) => (
+      <li
+        className={activeItem === i ? 'active' : ''}
+        onClick={() => onSelectItem(i)}
+        key={`${item}_${i}`}>
+        {item}
+      </li>
+    ));
+
+  return (
+    <div className='categories'>
+      <ul>
+        <li
+          onClick={() => onSelectItem(null)}
+          className={activeItem === null ? 'active' : ''}>
+          Все
+        </li>
+        {categories}
+      </ul>
+    </div>
+  );
 }
