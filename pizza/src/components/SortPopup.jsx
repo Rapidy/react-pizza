@@ -38,7 +38,7 @@ export default function SortPopup(props) {
     <div ref={sortRef} className='sort'>
       <div className='sort__label'>
         <svg
-          className={showPopup && 'rotated'}
+          className={showPopup ? 'rotated' : ''}
           width='10'
           height='6'
           viewBox='0 0 10 6'
