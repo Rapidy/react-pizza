@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 
-export default function SortPopup(props) {
+const SortPopup = memo(function SortPopup(props) {
   const [showPopup, setShowPopup] = useState(false);
   const [activeItem, setActiveItem] = useState(0);
 
@@ -27,10 +27,10 @@ export default function SortPopup(props) {
     props.items &&
     props.items.map((item, i) => (
       <li
-        key={`${item}_${i}`}
+        key={`${item.type}_${i}`}
         onClick={() => onSelectItem(i)}
         className={activeItem === i ? 'active' : ''}>
-        {item}
+        {item.name}
       </li>
     ));
 
@@ -50,7 +50,7 @@ export default function SortPopup(props) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={toggleShowPopup}>{props.items[activeItem]}</span>
+        <span onClick={toggleShowPopup}>{props.items[activeItem].name}</span>
       </div>
       {showPopup && (
         <div className='sort__popup'>
@@ -59,4 +59,6 @@ export default function SortPopup(props) {
       )}
     </div>
   );
-}
+});
+
+export default SortPopup;
