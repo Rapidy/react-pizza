@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -40,7 +41,7 @@ export default function Home() {
     ? state.map((obj) => {
         return (
           <PizzaBlock
-            addedPizzas={cartItems[obj.id] && cartItems[obj.id].length}
+            addedPizzas={cartItems[obj.id] && cartItems[obj.id].items.length}
             onClickAddPizza={addPizzaToCart}
             key={obj.id}
             {...obj}
