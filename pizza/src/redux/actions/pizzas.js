@@ -10,7 +10,7 @@ export const fetchPizzas = (filter) => (dispatch) => {
 
   axios
     .get(
-      `https://hardcore-shaw-12916d.netlify.app/pizzas?${
+      `https://hardcore-shaw-12916d.netlify.app/db.json?${
         filter.category !== null ? `category=${filter.category}` : ''
       }&_sort=${filter.sortBy.type}&_order=${filter.sortBy.order}`,
     )
